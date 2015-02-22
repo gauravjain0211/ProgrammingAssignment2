@@ -15,7 +15,8 @@ makeCacheMatrix <- function(splmatrix=matrix()){
   getinverse<-function() inverse
   setinverse<-function(newinverse) inverse<<-newinverse
   list(getmatrix=getmatrix,setmatrix=setmatrix,getinverse=getinverse,setinverse=setinverse)
-  
+  # above code will return a list of 4 functions and once we run the following function this will
+  # store the value of the inverse in the cache.
 }
 
 
@@ -29,10 +30,12 @@ cacheSolve <- function(mat){
     message("Getting cached inverse")
     return(inv)
   }
- 
+  #if function will check whether the value of inverse is null or not,
+  #value of inverse will be return from the cache if it is not null
   getmat<-mat$getmatrix()
   inv<-solve(getmat)
   mat$setinverse(inv)
   inv
-
+  # above code will give the value of the inverse of the matrix
+  # and further will store the same value in the cache when we are using mat$setinverse(inv)
 }
